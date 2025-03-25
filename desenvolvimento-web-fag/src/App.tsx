@@ -1,25 +1,24 @@
-import { useState } from 'react'
-import './App.css'
-import axios from 'axios'
-import { CepViewProps } from './components/cepView'
+import CacheDadosAPI from "./components/CacheDadosAPI";
+import Calculadora from "./components/Calculadora";
+import Header from "./components/header";
+import ListaFiltrada from "./components/ListaFiltrada";
+import Tarefas from "./components/Tarefas";
+import Temporizadores from "./components/Temporizadores";
 
-function App() {
-  const [cep, setCep] = useState('')
-  const [data, setData] = useState<CepViewProps>()
-  
 
-  function handleClick(){
-    axios.get(`https://viacep.com.br/ws/${cep.replace('.', ''). replace('-', '')}/json/`)
-  }
+const App: React.FC = () => {
+    return (
+        <div>
+            <Header />
+            <main>
+                <Tarefas />
+                <Temporizadores />
+                <Calculadora />
+                <ListaFiltrada />
+                <CacheDadosAPI />
+            </main>
+        </div>
+    );
+};
 
-  return (
-    <div style={{display: 'flex', gap:'20'}}>
-    <input value= {cep}
-    placeholder='digite seu cep'
-    onChange={(element) => setCep(element.target.value)}> </input>
-    <button onClick={handleClick}> Buscar Cep</button>
-    </div>
-  )
-}
-
-export default App
+export default App;
